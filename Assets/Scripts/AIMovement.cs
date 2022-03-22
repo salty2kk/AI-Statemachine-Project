@@ -7,22 +7,22 @@ public class AIMovement : MonoBehaviour
     #region Variables
     [Tooltip("The AI Agents movement speeds.")]
     [SerializeField] public float speed = 2f;
-    [SerializeField] public float chaseSpeed = 3.5f;
 
-
-    [SerializeField] public Transform player; // this transform is assigned in the inspector so the AI knows what to chase
-    [SerializeField] public float chaseDistance = 3; // this is the distance the AI will recognize the player and chase
+    [SerializeField] public Transform player;                                               // this transform is assigned in the inspector so the AI knows what to chase (in this case the player)
+    [SerializeField] public float chaseDistance = 4;                                        // this is the distance the AI will recognize the player and chase
+    [SerializeField] public float attackDistance = 1;
 
     [Tooltip("The waypoints that the AI follows by default.")]
-    public List<Transform> patrolGoals;
-    private int goalIndex = 0;
-    public float minGoalDistance = 0.05f;
+    public List<Transform> patrolGoals;                                                     // note - lists are good if you are changing the size of the array  
+
+    private int goalIndex = 0;                                                              // this is the number used to specify which Transform in the List is specified
+    public float minGoalDistance = 0.05f;                                                   // this number is used to check if our position is really close to the waypoint
 
     #endregion
 
     public void Update()
     {
-        if(Vector2.Distance(transform.position, player.position) < chaseDistance)
+        if (Vector2.Distance(transform.position, player.position) < chaseDistance) 
         {
             AIMoveTowards(player);
         }
@@ -33,17 +33,17 @@ public class AIMovement : MonoBehaviour
         }
     }
 
-    void AIMoveTowards(Transform goal)
+    
+    void AIMoveTowards(Transform goal)                                                      // this function requires a transform for it to be called is referred to as goal
     {
         Vector2 AIPosition = transform.position;
 
-        if (Vector2.Distance(AIPosition, goal.position) > minGoalDistance)
+        if (Vector2.Distance(AIPosition, goal.position) > minGoalDistance)                  // if the distance between our position and the goals is greater than 0.05
         {
-            //direction from A to B
-            // is B - A
-            //method 3
-            Vector2 directionToGoal = (goal.position - transform.position);
-            directionToGoal.Normalize();
+                                                                                            //                                       (A)             (B)                      
+            Vector2 directionToGoal = (goal.position - transform.position);                 // this gets the direction from it's own position to the goal by subtracting  (B - A)
+                  
+            directionToGoal.Normalize();                                                    // makes this vector have a magnitude of 1
             transform.position += (Vector3)directionToGoal * speed * Time.deltaTime;
         }
     }
@@ -52,28 +52,20 @@ public class AIMovement : MonoBehaviour
     {
         Vector2 AIPosition = transform.position;
 
-        //if we are  near the goal
-        if (Vector2.Distance(AIPosition, patrolGoals[goalIndex].position) < minGoalDistance)
+        if (Vector2.Distance(AIPosition, patrolGoals[goalIndex].position) < minGoalDistance) // if the distance between our position and the waypoints position is less than 0.05
         {
-            //++ increment by 1
-            //increase the value of waypointIndex up by 1
-            goalIndex++;
+            goalIndex++;                                                                     // increase the value of goalIndex up by 1
 
-            if (goalIndex >= patrolGoals.Count)
+            if (goalIndex >= patrolGoals.Count)                                              // if the index number is greater than the amount in the List
             {
-                goalIndex = 0;
+                goalIndex = 0;                                                               // set the index to 0 and go back to first waypoint
             }
         }
     }
-    /*
-    void Patrol()
+    
+    void Attack()
     {
-        float distance = Vector2.Distance(transform.position) patrolGoal.transform.position);
-
-        if (distance > 0.05f)
-        {
-            
-        }
+        Debug.Log("Attack!");
     }
-    */
+    
 }
