@@ -15,11 +15,12 @@ public class AIMovement : MonoBehaviour
     [Tooltip("The waypoints that the AI follows by default.")]
     public List<Transform> patrolGoals;                                                     // note - lists are good if you are changing the size of the array  
 
-    private int goalIndex = 0;                                                              // this is the number used to specify which Transform in the List is specified
+    public int goalIndex = 0;                                                              // this is the number used to specify which Transform in the List is specified
     public float minGoalDistance = 0.05f;                                                   // this number is used to check if our position is really close to the waypoint
 
     #endregion
 
+    /*
     public void Update()
     {
         if (Vector2.Distance(transform.position, player.position) < chaseDistance) 
@@ -32,15 +33,15 @@ public class AIMovement : MonoBehaviour
             AIMoveTowards(patrolGoals[goalIndex]);
         }
     }
-
+    */
     
-    void AIMoveTowards(Transform goal)                                                      // this function requires a transform for it to be called is referred to as goal
+    public void AIMoveTowards(Transform goal)                                               // this function requires a transform for it to be called is referred to as goal
     {
         Vector2 AIPosition = transform.position;
 
         if (Vector2.Distance(AIPosition, goal.position) > minGoalDistance)                  // if the distance between our position and the goals is greater than 0.05
         {
-                                                                                            //                                       (A)             (B)                      
+                                                                                            //                                          (A)          (B)                      
             Vector2 directionToGoal = (goal.position - transform.position);                 // this gets the direction from it's own position to the goal by subtracting  (B - A)
                   
             directionToGoal.Normalize();                                                    // makes this vector have a magnitude of 1
@@ -62,10 +63,13 @@ public class AIMovement : MonoBehaviour
             }
         }
     }
-    
-    void Attack()
+    /*
+    public void HaveALookAround()
     {
-        Debug.Log("Attack!");
+        transform.position = 0
+
+       
     }
+    */
     
 }

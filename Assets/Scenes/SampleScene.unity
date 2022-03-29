@@ -10525,6 +10525,7 @@ GameObject:
   - component: {fileID: 1215153814}
   - component: {fileID: 1215153813}
   - component: {fileID: 1215153815}
+  - component: {fileID: 1215153816}
   m_Layer: 0
   m_Name: AIAgent
   m_TagString: Enemy
@@ -10618,7 +10619,22 @@ MonoBehaviour:
   - {fileID: 1443579310}
   - {fileID: 207075141}
   - {fileID: 1785755477}
+  goalIndex: 0
   minGoalDistance: 0.05
+--- !u!114 &1215153816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215153812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8c4355b64193e4ba95bab8160d8487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  aiMovement: {fileID: 0}
 --- !u!1 &1443579309
 GameObject:
   m_ObjectHideFlags: 0
