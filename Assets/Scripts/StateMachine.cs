@@ -73,7 +73,7 @@ public class StateMachine : MonoBehaviour
             yield return new WaitForSeconds(3);
             currentState = State.Patrol;
         }
-        yield return null;
+   
         Debug.Log("Investigate: Exit");
         NextState();
     }
@@ -89,6 +89,7 @@ public class StateMachine : MonoBehaviour
             //update
 
             aiMovement.AIMoveTowards(aiMovement.patrolGoals[aiMovement.goalIndex]);
+            aiMovement.WaypointUpdate();
 
             if (Vector2.Distance(transform.position, aiMovement.player.position)
                                     < aiMovement.chaseDistance)
@@ -98,7 +99,7 @@ public class StateMachine : MonoBehaviour
 
             yield return null;
         }
-        Debug.Log("BerryPicking: Exit");
+        Debug.Log("Patrol: Exit");
         NextState();
     }
 }

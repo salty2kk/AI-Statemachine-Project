@@ -6,36 +6,19 @@ public class AIMovement : MonoBehaviour
 {
     #region Variables
     [Tooltip("The AI Agents movement speeds.")]
-    [SerializeField] public float speed = 2f;
-
+    [SerializeField] public float speed = 3f;
     [SerializeField] public Transform player;                                               // this transform is assigned in the inspector so the AI knows what to chase (in this case the player)
     [SerializeField] public float chaseDistance = 4;                                        // this is the distance the AI will recognize the player and chase
-    [SerializeField] public float attackDistance = 1;
 
     [Tooltip("The waypoints that the AI follows by default.")]
     public List<Transform> patrolGoals;                                                     // note - lists are good if you are changing the size of the array  
 
-    public int goalIndex = 0;                                                              // this is the number used to specify which Transform in the List is specified
+    public int goalIndex = 0;                                                               // this is the number used to specify which Transform in the List is specified
     public float minGoalDistance = 0.05f;                                                   // this number is used to check if our position is really close to the waypoint
 
     #endregion
-
-    /*
-    public void Update()
-    {
-        if (Vector2.Distance(transform.position, player.position) < chaseDistance) 
-        {
-            AIMoveTowards(player);
-        }
-        else
-        {
-            WaypointUpdate();
-            AIMoveTowards(patrolGoals[goalIndex]);
-        }
-    }
-    */
     
-    public void AIMoveTowards(Transform goal)                                               // this function requires a transform for it to be called is referred to as goal
+    public void AIMoveTowards(Transform goal)                                               // this function requires a transform for it to be called is referred to as "goal"
     {
         Vector2 AIPosition = transform.position;
 
@@ -63,13 +46,5 @@ public class AIMovement : MonoBehaviour
             }
         }
     }
-    /*
-    public void HaveALookAround()
-    {
-        transform.position = 0
 
-       
-    }
-    */
-    
 }
