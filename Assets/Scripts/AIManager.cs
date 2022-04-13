@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
 public class AIManager : BaseManager
 {
     public enum State
@@ -23,32 +23,27 @@ public class AIManager : BaseManager
         {
             Debug.LogError("PlayerManager not found");
         }
+
+        NextState();
     }
 
-    public override void TakeTurn()
+    public void NextState()
     {
-        if (_health <= 0f)
-        {
-            currentState = State.Dead;
-        }
-
         switch (currentState)
         {
             case State.FullHP:
                 FullHPState();
-                if (_health > 0)
+                if (_health >= 80)
                 {
                     Debug.Log("I'm Full Health!");
                 }
-
                 break;
             case State.LowHP:
                 LowHPState();
-                if (_health > 0)
+                if (_health <= 40)
                 {
                     Debug.Log("I'm nearly Dead!");
                 }
-
                 break;
             case State.Dead:
                 DeadState();
@@ -59,22 +54,22 @@ public class AIManager : BaseManager
                 break;
         }
 
-
     }
 
-    IEnumerator EndTurn()
-    {
-        yield return new WaitForSecondsRealtime(2f);
-        _playerManager.TakeTurn();
-    }
-
-    void LowHPState()
+    #region States
+    private IEnumerator LowHPState()
     {    
-
-        if (_health > 60f)
+        if (_health >= 40f)
         {
             currentState = State.FullHP;
         }
+        else
+        {
+            currentState = State.LowHP;
+        }
+
+        yield return null;
+        NextState();
     }
 
     void DeadState()
@@ -82,14 +77,20 @@ public class AIManager : BaseManager
         Debug.Log("AI IS DEAD YOU WIN");
     }
 
-    void FullHPState()
+    private IEnumerator FullHPState()
     {
         if (_health < 40f)
         {
             currentState = State.LowHP;
             LowHPState();
-            return;
+        }
+        else
+        {
+            currentState = State.FullHP;
         }
 
+        yield return null;
+        NextState();
     }
+    #endregion
 }

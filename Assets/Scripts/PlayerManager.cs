@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class PlayerManager : BaseManager
 {
     protected AIManager _aiManager;
-    [SerializeField] protected CanvasGroup _buttonGroup;
+
 
     protected override void Start()
     {
@@ -19,15 +19,10 @@ public class PlayerManager : BaseManager
         }
     }
 
-    public override void TakeTurn()
-    {
-        _buttonGroup.interactable = true;
-    }
-
     public void OneShot()
     {
         DealDamage(_maxHealth);
-        _aiManager.DealDamage(80f);
+        _aiManager.DealDamage(100f);
     }
 
     public void LightAttack()

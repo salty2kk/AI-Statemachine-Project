@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public abstract class BaseManager : MonoBehaviour
 {
-    //protected is basically private,
-    //but inherited classes also have access to it
+    //protected is basically private, but inherited classes also have access to it.
+    //All classes that inherit from this script will have these variables in the inspector.
     [SerializeField] protected float _health = 100;
     [SerializeField] protected float _maxHealth = 100;          
     [SerializeField] protected Text _healthText;
@@ -21,13 +21,12 @@ public abstract class BaseManager : MonoBehaviour
     //abstract classes cannot be used, only childern of abstract classes
     //abstract function (inside an abstract class) has to be implemented by child classes
 
-    public abstract void TakeTurn();
 
     public void UpdateHealthText()
     {
-        if (_healthText != null)
+        if (_healthText != null)                                                   // if health is above 0
         {
-            _healthText.text = _health.ToString("HP = 0");
+            _healthText.text = _health.ToString("HP = 0");                         // update health text
         }
     }
 
