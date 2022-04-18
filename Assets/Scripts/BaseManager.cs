@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public abstract class BaseManager : MonoBehaviour
 {
+    #region Variables
     //protected is basically private, but inherited classes also have access to it.
     //All classes that inherit from this script will have these variables in the inspector.
     [SerializeField] protected float _health = 100;
     [SerializeField] protected float _maxHealth = 100;          
     [SerializeField] protected Text _healthText;
+    #endregion
 
     //virtual allows the function to be "overridden" by child classes
     //override replaces parent class's function (must be marked virtual)

@@ -7,7 +7,6 @@ public class PlayerManager : BaseManager
 {
     protected AIManager _aiManager;
 
-
     protected override void Start()
     {
         base.Start();

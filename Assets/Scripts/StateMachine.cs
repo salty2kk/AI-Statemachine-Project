@@ -13,7 +13,6 @@ public class StateMachine : MonoBehaviour
     }
 
     public State currentState;
-
     public AIMovement aiMovement;
 
 
@@ -41,7 +40,7 @@ public class StateMachine : MonoBehaviour
         }
     }
 
-
+    #region State Coroutines
     //Coroutine is a special method that can be paused and returned to later
     private IEnumerator ChaseState()
     {
@@ -102,4 +101,5 @@ public class StateMachine : MonoBehaviour
         Debug.Log("Patrol: Exit");
         NextState();
     }
+#endregion
 }

@@ -62,6 +62,7 @@ public class AIManager : BaseManager
         if (_health >= 40f)
         {
             currentState = State.FullHP;
+            FullHPState();
         }
         else
         {
