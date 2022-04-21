@@ -17,7 +17,8 @@ public class AIMovement : MonoBehaviour
     public float minGoalDistance = 0.05f;                                                   // this number is used to check if our position is really close to the waypoint
 
     #endregion
-    
+
+    #region Movement and Goal Update Functions
     public void AIMoveTowards(Transform goal)                                               // this function requires a transform for it to be called is referred to as "goal"
     {
         Vector2 AIPosition = transform.position;
@@ -46,5 +47,5 @@ public class AIMovement : MonoBehaviour
             }
         }
     }
-
+    #endregion
 }

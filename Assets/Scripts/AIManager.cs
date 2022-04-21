@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AIManager : BaseManager
 {
+    #region Variables
     public enum State
     {
         FullHP,
@@ -14,6 +15,7 @@ public class AIManager : BaseManager
     public State currentState;
     protected PlayerManager _playerManager;
 
+    #endregion
     protected override void Start()
     {
         base.Start();
@@ -27,7 +29,7 @@ public class AIManager : BaseManager
         NextState();
     }
 
-    public void NextState()
+    public void NextState()                                 // this statemachine does not work properly, it does not debug the any other state than FullHP and I don't know why
     {
         switch (currentState)
         {

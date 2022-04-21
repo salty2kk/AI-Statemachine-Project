@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerManager : BaseManager
 {
-    protected AIManager _aiManager;
+    protected AIManager _aiManager;                         // access the AIManager script so we can effect its health value
 
     protected override void Start()
     {
@@ -18,6 +18,7 @@ public class PlayerManager : BaseManager
         }
     }
 
+    #region Attack Functions
     public void OneShot()
     {
         DealDamage(_maxHealth);
@@ -33,4 +34,5 @@ public class PlayerManager : BaseManager
     {
         _aiManager.DealDamage(50f);
     }
+    #endregion
 }
